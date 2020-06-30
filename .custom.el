@@ -94,7 +94,6 @@
   (evil-org-agenda-set-keys))
 
 ;; screenshot in org mode
-(setq doom-localleader-key ",")
 (add-hook 'org-mode-hook
 	  (lambda ()
 	  (defun ros ()
@@ -116,8 +115,4 @@
 		    )
 		  (message "File created and linked...")
 		  )
-	      (message "You're in a not saved buffer! Save it first!")
-	      )
-	    )
-	  )
-	  )
+	      (message "You're in a not saved buffer! Save it first!")))))

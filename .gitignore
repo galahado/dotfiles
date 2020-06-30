@@ -19,3 +19,13 @@
 Dropbox
 Pictures
 snap
+.conda
+.config/Qt*
+.config/nautilus
+.python_history
+miniconda3
+.config/pulse
+.dicts
+Projects
+.goldendict
+Downloads
