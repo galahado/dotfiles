@@ -1,0 +1,41 @@
+<monitors version="2">
+  <configuration>
+    <logicalmonitor>
+      <x>3840</x>
+      <y>360</y>
+      <scale>2</scale>
+      <primary>yes</primary>
+      <monitor>
+        <monitorspec>
+          <connector>eDP-1</connector>
+          <vendor>APP</vendor>
+          <product>Color LCD</product>
+          <serial>0x00000000</serial>
+        </monitorspec>
+        <mode>
+          <width>2880</width>
+          <height>1800</height>
+          <rate>59.990268707275391</rate>
+        </mode>
+      </monitor>
+    </logicalmonitor>
+    <logicalmonitor>
+      <x>0</x>
+      <y>0</y>
+      <scale>2</scale>
+      <monitor>
+        <monitorspec>
+          <connector>DP-2</connector>
+          <vendor>BNQ</vendor>
+          <product>BenQ EW3270U</product>
+          <serial>A7K03958019</serial>
+        </monitorspec>
+        <mode>
+          <width>3840</width>
+          <height>2160</height>
+          <rate>59.996623992919922</rate>
+        </mode>
+      </monitor>
+    </logicalmonitor>
+  </configuration>
+</monitors>
