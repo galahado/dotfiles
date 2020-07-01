@@ -114,3 +114,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH="$PATH:/usr/lib/jvm/jdk-14.0.1/bin"
+export JAVA_HOME="/usr/lib/jvm/jdk-14.0.1/"
