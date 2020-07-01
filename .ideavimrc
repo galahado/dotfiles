@@ -1,0 +1,64 @@
+let mapleader = ","   " leader is comma
+let localleader = "," " leader is comma
+
+set tabstop=4       " number of visual spaces per tab
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " spaces in newline start
+set expandtab       " tabs are spaces
+set number              " show line numbers
+set rnu                 " show relative line numbers
+set showcmd             " show command in bottom bar
+set cursorline          " highlight current line
+set surround            " use surround shortcuts
+set commentary "vim-commentary
+filetype indent on      " load filetype-specific indent files
+set wildmenu            " visual autocomplete for command menu
+set showmatch           " highlight matching [{()}]
+set timeoutlen=500      " timeout for key combinations
+
+set so=5                " lines to cursor
+set backspace=2         " make backspace work like most other apps
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+set ignorecase          " do case insensitive matching
+set smartcase           " do smart case matching
+set hidden
+
+set fillchars+=stl:\ ,stlnc:\
+set laststatus=2
+set clipboard=unnamedplus  "x clipboard as unnamed
+
+"press kj to exit insert mode
+imap jk <esc>
+vmap jk <esc>
+
+"@see https://youtrack.jetbrains.com/issue/vim-510 on expand selected region. press `ctrl-w` and `ctrl-shift-w` to increase and decrease selected region
+
+noremap ,xm :action searcheverywhere<cr>
+noremap ,ci :action commentbylinecomment<cr>
+noremap ,xs :action saveall<cr>
+noremap ,aa :action $copy<cr>
+noremap ,zz :action $paste<cr>
+noremap ,yy :action pastemultiple<cr>
+noremap ,qq :action findinpath<cr>
+noremap ,ss :action find<cr>
+noremap ,fp :action copypaths<cr>
+noremap ,xk :action closeeditor<cr>
+noremap ,rr :action recentfiles<cr>
+noremap ,kk :action gotofile<cr>
+noremap ,ii :action gotosymbol<cr>
+noremap <c-]> :action gotoimplementation<cr>
+noremap ,xz :action activateterminaltoolwindow<cr>
+
+" ideavim don't support numberic character in hotkey in 0.55
+" it's fixed in 0.55.1
+noremap ,x1 <c-w>o
+noremap ,x2 :split<cr>
+noremap ,x3 :vsplit<cr>
+noremap ,x0 :q<cr>
+" move window
+noremap ,wh <c-w>h
+noremap ,wl <c-w>l
+noremap ,wj <c-w>j
+noremap ,wk <c-w>k
+noremap ,xx :action editorselectword<cr>
