@@ -1,64 +1,130 @@
-let mapleader = ","   " leader is comma
-let localleader = "," " leader is comma
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
 
-set tabstop=4       " number of visual spaces per tab
-set softtabstop=4   " number of spaces in tab when editing
-set shiftwidth=4    " spaces in newline start
-set expandtab       " tabs are spaces
-set number              " show line numbers
-set rnu                 " show relative line numbers
-set showcmd             " show command in bottom bar
-set cursorline          " highlight current line
-set surround            " use surround shortcuts
-set commentary "vim-commentary
-filetype indent on      " load filetype-specific indent files
-set wildmenu            " visual autocomplete for command menu
-set showmatch           " highlight matching [{()}]
-set timeoutlen=500      " timeout for key combinations
 
-set so=5                " lines to cursor
-set backspace=2         " make backspace work like most other apps
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
-set ignorecase          " do case insensitive matching
-set smartcase           " do smart case matching
-set hidden
+"" Common settings -------------------------
+" .ideavimrc related
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+"" let you copy paste from the system and Idea clipboards.
+set clipboard+=unnamed
+set clipboard+=ideaput
+" keeps few lines visible when scrolling
+set scrolloff=5
+" highlights the search string while typing
+set incsearch
+set number relativenumber
+" which-key
+set which-key
+set notimeout
+" map ESC to jj
+imap jk <Esc>
+set timeoutlen=500
+" leader key
+let mapleader=" "
 
-set fillchars+=stl:\ ,stlnc:\
-set laststatus=2
-set clipboard=unnamedplus  "x clipboard as unnamed
+" Distraction Free Mode
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
 
-"press kj to exit insert mode
-imap jk <esc>
-vmap jk <esc>
+" Terminal
+nnoremap <m-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
-"@see https://youtrack.jetbrains.com/issue/vim-510 on expand selected region. press `ctrl-w` and `ctrl-shift-w` to increase and decrease selected region
+" Font Size
+nnoremap <Leader>- :action EditorDecreaseFontSizeGlobal<CR>
+nnoremap <Leader>+ :action EditorIncreaseFontSizeGlobal<CR>
 
-noremap ,xm :action searcheverywhere<cr>
-noremap ,ci :action commentbylinecomment<cr>
-noremap ,xs :action saveall<cr>
-noremap ,aa :action $copy<cr>
-noremap ,zz :action $paste<cr>
-noremap ,yy :action pastemultiple<cr>
-noremap ,qq :action findinpath<cr>
-noremap ,ss :action find<cr>
-noremap ,fp :action copypaths<cr>
-noremap ,xk :action closeeditor<cr>
-noremap ,rr :action recentfiles<cr>
-noremap ,kk :action gotofile<cr>
-noremap ,ii :action gotosymbol<cr>
-noremap <c-]> :action gotoimplementation<cr>
-noremap ,xz :action activateterminaltoolwindow<cr>
+"" Window Navigation
+nnoremap <Leader>wv :action SplitVertically<CR>
+nnoremap <Leader>ws :action SplitHorizontally<CR>
+nnoremap <Leader>wc :action Unsplit<CR>
+nnoremap <Leader>wo :action MoveEditorToOppositeTabGroup<CR>
+nnoremap <Leader>wn :action EditSourceInNewWindow<CR>
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-m> :action HideAllWindows<CR>
+nnoremap <s-TAB> :action PreviousTab<CR>
+nnoremap <TAB> :action NextTab<CR>
+nnoremap <Leader>en :action EditSourceInNewWindow<CR>
+nnoremap <Leader>n :action NextWindow<CR>
+nnoremap <Leader>qq :action CloseContent<CR>
+nnoremap <Leader>qa :action CloseAllEditors<CR>
 
-" ideavim don't support numberic character in hotkey in 0.55
-" it's fixed in 0.55.1
-noremap ,x1 <c-w>o
-noremap ,x2 :split<cr>
-noremap ,x3 :vsplit<cr>
-noremap ,x0 :q<cr>
-" move window
-noremap ,wh <c-w>h
-noremap ,wl <c-w>l
-noremap ,wj <c-w>j
-noremap ,wk <c-w>k
-noremap ,xx :action editorselectword<cr>
+"" Source Code Editing
+set ideajoin
+set idearefactormode=keep
+vnoremap < <gv
+vnoremap > >gv
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+nnoremap <c-c> :action CommentByLineComment<CR>
+nnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
+nnoremap <Leader>= :action ReformatCode<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+nnoremap <m-r> :action RecentFiles<CR>
+nnoremap <leader>l :action RecentLocations<CR>
+nnoremap <leader>h :action LocalHistory.ShowHistory<CR>
+nnoremap <leader>R :action RenameElement<CR>
+nnoremap <leader>j :action AceAction<CR>
+nnoremap <leader>g :action SelectInProjectView<CR>
+
+"" Code Navigation
+"" nnoremap <c-/> :action FindInPath<CR>
+nnoremap <leader>a :action GotoAction<CR>
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>u :action FindUsages<CR>
+nnoremap <leader>s :action GotoRelated<CR>
+nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>m :action ActivateMavenToolWindow<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+nnoremap <c-s> :action FileStructurePopup<CR>
+nnoremap <c-o> :action GotoSymbol<CR>
+nnoremap gc :action GotoClass<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotToDeclaration<CR>
+nnoremap gp :action GotToSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+nnoremap gn :action GotoNextError<CR>
+nnoremap gk :action PreviousDiff<CR>
+nnoremap gj :action NexDiff<CR>
+nnoremap <leader>dn :action NextDiff<CR>
+nnoremap <leader>dp :action PreviousDiff<CR>
+
+"" Tool Windows
+nnoremap <c-p> :action JumpToLastWindow<CR>
+nnoremap <c-x> :action HideAllWindows<CR>
+
+"" Running and Debugging
+nnoremap ,r :action Run<CR>
+nnoremap ,c :action RunClass<CR>
+nnoremap ,f :action ChooseRunConfiguration<CR>
+nnoremap ,t :action ActivateRunToolWindow<CR>
+nnoremap ,u :action Rerun<CR>
+nnoremap ,f :action RerunFailedTests<CR>
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+nnoremap ,d :action ContextDebug<CR>
+nnoremap ,n :action ActivateDebugToolWindow<CR>
+
+"" Plugins
+Plug 'easymotion/vim-easymotion'
+map <leader>F <Plug>(easymotion-s)
+map <leader>f <Plug>(easymotion-f)
+
+Plug 'preservim/nerdtree'
+map <c-t>   :NERDTree<CR>
+
+Plug 'tpope/vim-surround'
+
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'tpope/vim-commentary'
